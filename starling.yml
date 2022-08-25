@@ -1,0 +1,12 @@
+production:
+  morphology: stem_en
+  enable_star: true
+  min_infix_len: 3
+  max_matches: 10000
+  mem_limit: 256M
+  port: 9312
+  bin_path: /usr/local/bin
+  searchd_file_path: /var/www/globalauth/shared/sphinx/
+  config_file: /var/www/globalauth/shared/config/sphinx.conf
+  pid_file: /var/www/globalauth/shared/pids/sphinx.pid
+  address: 10.176.67.72

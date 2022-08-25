@@ -1,0 +1,21 @@
+development:
+  api_login_id: 3MCwg65m
+  transaction_key: 5MM7U8tFfDD745pk
+  testing: true
+  base_mode: test
+  validation_mode: none
+
+test:
+  api_login_id: 3MCwg65m
+  transaction_key: 5MM7U8tFfDD745pk
+  testing: true
+  base_mode: test
+  validation_mode: none
+
+production:
+  api_login_id: 738tFK5hq
+  transaction_key: 78Ed43H3Z35LqSnX
+  testing: false
+  base_mode: production
+  validation_mode: live
+

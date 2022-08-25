@@ -1,0 +1,20 @@
+production:
+  adapter: mysql
+  host: 10.176.160.74
+  port: 3306
+  database: globalauth_production
+  username: globalauth
+  password: mas75VaSes#
+  encoding: utf8
+  timeout: 5000
+
+legacy:
+  production:
+    adapter: mysql
+    host: 10.176.160.74
+    port: 3306
+    database: globalauth_legacy
+    username: globalauth
+    password: mas75VaSes#
+    encoding: utf8
+    timeout: 5000
