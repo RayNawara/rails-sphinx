@@ -67,3 +67,9 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 /public/uploads
+
+/sphinx
+/shared/sphinx
+/data
+sphinx-0.9.9.tar.gz
+sphinx-0.9.9.tar.gz:Zone.Identifier

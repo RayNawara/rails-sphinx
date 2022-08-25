@@ -9,7 +9,7 @@ WORKDIR /home
 RUN curl -O http://sphinxsearch.com/files/archive/sphinx-0.9.9.tar.gz
 # COPY sphinx-0.9.9.tar.gz  .
 RUN tar zxvf sphinx-0.9.9.tar.gz
-WORKDIR sphinx-0.9.9
+WORKDIR /sphinx-0.9.9
 RUN pwd
 RUN ./configure --with-mysql 
 RUN make 
@@ -17,4 +17,4 @@ RUN make install
 WORKDIR /home
 COPY shared shared/
 RUN cp shared/config/sphinx.conf /usr/local/etc
-CMD [searchd --config shared/config/sphinx.conf]
+# CMD [searchd --config shared/config/sphinx.conf]
