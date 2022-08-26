@@ -1,0 +1,48 @@
+version: "3"
+services:
+  rails:
+    image: mba-rails-sphinx
+    build: .
+    volumes:
+      - "/home/ray/mba-legacy:/mba-orig"
+    container_name: mba_rails_sphinx
+    depends_on:
+      - mysql
+      - gemstash
+    ports:
+      - 8081:8080
+      - 9311:9306
+    networks:
+      - mba-network
+    tty: true
+    environment:
+      - RAILS_ENV=development
+
+  mysql:
+    image: grugnog/mysql-5.1
+    volumes:
+      - "./mba-mysql:/var/lib/mysql"
+    container_name: mba_mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - mba-network
+    environment:
+      - MYSQL_DATABASE=mba_development
+      - MYSQL_ROOT_PASSWORD=Mys3267!
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=SomePassword
+
+  gemstash:
+    image: artemave/gemstash
+    volumes:
+      - "./gemstash:/root/.gemstash"
+    container_name: gemstash_server
+    ports:
+      - '9292:9292'
+    networks:
+      - mba-network
+
+networks:
+  mba-network:
+    driver: bridge

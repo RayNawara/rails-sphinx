@@ -1,0 +1,40 @@
+diff --git a/ext/openssl/extconf.rb b/ext/openssl/extconf.rb
+index 3f9ef511..033440ca 100644
+--- a/ext/openssl/extconf.rb
++++ b/ext/openssl/extconf.rb
+@@ -103,6 +103,12 @@ end
+ have_func("SSLv2_method")
+ have_func("SSLv2_server_method")
+ have_func("SSLv2_client_method")
++have_func("TLSv1_1_method")
++have_func("TLSv1_1_server_method")
++have_func("TLSv1_1_client_method")
++have_func("TLSv1_2_method")
++have_func("TLSv1_2_server_method")
++have_func("TLSv1_2_client_method")
+ unless have_func("SSL_set_tlsext_host_name", ['openssl/ssl.h'])
+   have_macro("SSL_set_tlsext_host_name", ['openssl/ssl.h']) && $defs.push("-DHAVE_SSL_SET_TLSEXT_HOST_NAME")
+ end
+diff --git a/ext/openssl/ossl_ssl.c b/ext/openssl/ossl_ssl.c
+index 00a447d7..ace50c5f 100644
+--- a/ext/openssl/ossl_ssl.c
++++ b/ext/openssl/ossl_ssl.c
+@@ -101,6 +101,18 @@ struct {
+     OSSL_SSL_METHOD_ENTRY(TLSv1),
+     OSSL_SSL_METHOD_ENTRY(TLSv1_server),
+     OSSL_SSL_METHOD_ENTRY(TLSv1_client),
++#if defined(HAVE_TLSV1_2_METHOD) && defined(HAVE_TLSV1_2_SERVER_METHOD) && \
++        defined(HAVE_TLSV1_2_CLIENT_METHOD)
++    OSSL_SSL_METHOD_ENTRY(TLSv1_2),
++    OSSL_SSL_METHOD_ENTRY(TLSv1_2_server),
++    OSSL_SSL_METHOD_ENTRY(TLSv1_2_client),
++#endif
++#if defined(HAVE_TLSV1_1_METHOD) && defined(HAVE_TLSV1_1_SERVER_METHOD) && \
++        defined(HAVE_TLSV1_1_CLIENT_METHOD)
++    OSSL_SSL_METHOD_ENTRY(TLSv1_1),
++    OSSL_SSL_METHOD_ENTRY(TLSv1_1_server),
++    OSSL_SSL_METHOD_ENTRY(TLSv1_1_client),
++#endif
+ #if defined(HAVE_SSLV2_METHOD) && defined(HAVE_SSLV2_SERVER_METHOD) && \
+         defined(HAVE_SSLV2_CLIENT_METHOD)
+     OSSL_SSL_METHOD_ENTRY(SSLv2),

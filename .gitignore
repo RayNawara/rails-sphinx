@@ -71,5 +71,7 @@ yarn-debug.log*
 /sphinx
 /shared/sphinx
 /data
+/gemstash
+/mba-mysql
 sphinx-0.9.9.tar.gz
 sphinx-0.9.9.tar.gz:Zone.Identifier
