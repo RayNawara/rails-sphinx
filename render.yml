@@ -1,0 +1,7 @@
+services:
+  - type: pserv
+    name: mba-sphinx
+    plan: Starter Plus
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerCommand:  searchd --config config/sphinx.conf
