@@ -15,7 +15,7 @@ RUN ./configure --with-mysql
 RUN make 
 RUN make install
 WORKDIR /mba-orig
-COPY shared shared/
+ADD shared ./shared
 RUN cp shared/config/sphinx.conf /usr/local/etc
 RUN searchd --config shared/config/sphinx.conf
 

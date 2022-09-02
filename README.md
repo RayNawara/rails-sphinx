@@ -67,7 +67,7 @@ This will drop you into your home directory
 
 `bundle install`
 
-`searchd --config shared/config/sphinx.conf`
+`searchd --config config/sphinx.conf`
 
 `bundle exec unicorn_rails -c config/unicorn.conf`
 
