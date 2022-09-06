@@ -102,6 +102,10 @@ RUN cd ~ && download=https://github.com/wkhtmltopdf/wkhtmltopdf/releases/downloa
 # set working directory to project src
 WORKDIR /mba-legacy
 
+RUN bundle install
+
+RUN rake:ts
+
 # RUN pwd && bundle config mirror.https://rubygems.org http://gemstash:9292
 
 # bundle install and then bundle exec unicorn_rails -c config/unicorn.conf
