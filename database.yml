@@ -1,0 +1,36 @@
+development:
+  adapter: mysql
+  host: localhost
+  port: 3306
+  database: mba_development
+  username: root
+  password:
+  encoding: utf8
+  timeout: 5000
+
+production:
+  adapter: mysql
+  host: mba-mysql-5-1
+  port: 3306
+  database: mba_production
+  username: mysql
+  password: MySecretPassword22!
+  encoding: utf8
+  timeout: 5000
+  estraier:
+    host: 10.176.67.72
+    user: globalauth
+    password: SoniC$NeW33Nates
+    port: 1978
+    node: globalauth
+
+legacy:
+  production:
+    adapter: mysql
+    host: mba-legacy-mysql-5-1
+    port: 3306
+    database: GA_dbo
+    username: mysql
+    password: MySecretPassword22!
+    encoding: utf8
+    timeout: 5000

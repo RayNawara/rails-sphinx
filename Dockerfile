@@ -1,3 +1,24 @@
+# this is our first build stage, it will not persist in the final image
+FROM ubuntu as intermediate
+
+WORKDIR /
+ARG GITHUB_PAT
+RUN echo $GITHUB_PAT
+
+RUN apt-get update
+RUN apt-get install -y git
+
+RUN mkdir /root/.ssh/
+RUN --mount=type=secret,id=id_rsa,dst=/etc/secrets/id_rsa cp /etc/secrets/id_rsa /root/.ssh/
+
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+RUN git clone https://mike-baker-authenticated:$GITHUB_PAT@github.com/MBA-Ventures-LLC/mba-legacy.git
+COPY /database.yml /mba-legacy/config/database.yml
+WORKDIR /mba-legacy
+RUN git submodule update --init --recursive
+
 # https://github.com/iComputer7/ancient-ubuntu-docker
 FROM ubuntu:12.04
 
@@ -5,7 +26,10 @@ RUN sed -i -e "s/archive.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.
 
 # https://freelancing-gods.com/2008/06/12/a-concise-guide-to-using-thinking-sphinx.html
 RUN apt-get update -q && apt-get install -y curl build-essential libmysqlclient-dev nano
-WORKDIR /home
+
+COPY --from=intermediate /mba-legacy/ /mba-legacy/
+
+WORKDIR /home/app
 RUN curl -O http://sphinxsearch.com/files/archive/sphinx-0.9.9.tar.gz
 # COPY sphinx-0.9.9.tar.gz  .
 RUN tar zxvf sphinx-0.9.9.tar.gz
@@ -14,10 +38,10 @@ RUN pwd
 RUN ./configure --with-mysql 
 RUN make 
 RUN make install
-WORKDIR /mba-orig
-COPY shared shared/
+WORKDIR /mba-legacy
+ADD shared ./shared
 RUN cp shared/config/sphinx.conf /usr/local/etc
-RUN searchd --config shared/config/sphinx.conf
+# RUN searchd --config shared/config/sphinx.conf
 
 LABEL description="This is an image to setup a dev environment for mbadiamond"
 
@@ -75,18 +99,12 @@ RUN apt-get update && apt-get install -y libmysqlclient-dev mysql-client \
 # install wkhtmltopdf 0.12.6
 RUN cd ~ && download=https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && wget $download -O wkhtmltox.tar.xz  && apt-get install -y xfonts-base xfonts-75dpi && tar xf wkhtmltox.tar.xz && mv wkhtmltox/bin/* /usr/local/bin/ && wkhtmltopdf --version
 
-# Get MBA source from github
-# RUN git init && git clone --recursive https://github.com/RayNawara/mba-orig.git 
-# Change this to link to my source code directory
-
 # set working directory to project src
-WORKDIR /mba-orig
+WORKDIR /mba-legacy
 
 # RUN pwd && bundle config mirror.https://rubygems.org http://gemstash:9292
 
 # bundle install and then bundle exec unicorn_rails -c config/unicorn.conf
-
-# RUN bundle installSS
 
 # You could also run script/server but then you can't generate PDFs. 
 

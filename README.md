@@ -6,10 +6,10 @@ Ruby on rails development Environment with Sphinx.
 
 ## Docker
 
-### Please look at docker-compose.yml and make sure you change mba-orig, it is for your source code. Mine is /home/ray/
+### Please look at docker-compose.yml and make sure you change mba-legacy, it is for your source code. Mine is /home/ray/
 
 volumes:<br>
-      - */home/ray/mba-legacy*:/mba-orig<br>
+      - */home/ray/mba-legacy*:/mba-legacy<br>
 
 To build:
 
@@ -67,7 +67,9 @@ This will drop you into your home directory
 
 `bundle install`
 
-`searchd --config shared/config/sphinx.conf`
+I had to run `rake ts:in` to build the index, then
+
+`searchd --config config/sphinx.conf`
 
 `bundle exec unicorn_rails -c config/unicorn.conf`
 

@@ -3,8 +3,6 @@ services:
   rails:
     image: mba-rails-sphinx
     build: .
-    volumes:
-      - "/home/ray/mba-legacy:/mba-orig"
     container_name: mba_rails_sphinx
     depends_on:
       - mysql
