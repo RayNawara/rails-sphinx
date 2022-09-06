@@ -112,4 +112,6 @@ RUN rake ts:in
 
 # You could also run script/server but then you can't generate PDFs. 
 
+EXPOSE 9312
+
 CMD ["/bin/bash"]

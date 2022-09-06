@@ -5,3 +5,10 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile
     dockerCommand:  rake: ts:in; searchd --config config/sphinx.conf
+    envVars:
+    - key: RAILS_ENV
+      production
+    - key: RACK_ENV
+      production
+    - key: PORT
+      value: 9312
