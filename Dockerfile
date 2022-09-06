@@ -104,7 +104,7 @@ WORKDIR /mba-legacy
 
 RUN bundle install
 
-RUN rake:ts
+RUN rake ts:in
 
 # RUN pwd && bundle config mirror.https://rubygems.org http://gemstash:9292
 
