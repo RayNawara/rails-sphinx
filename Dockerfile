@@ -87,8 +87,8 @@ RUN RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/src/openssl-1.0.2u rbenv i
   && rbenv rehash
 
 # Set Rails to run in development
-ENV RAILS_ENV development 
-ENV RACK_ENV development
+# ENV RAILS_ENV development 
+# ENV RACK_ENV development
 
 # install for MySql
 RUN apt-get update && apt-get install -y libmysqlclient-dev mysql-client \
