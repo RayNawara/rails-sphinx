@@ -106,7 +106,7 @@ RUN pwd && bundle config mirror.https://rubygems.org https://gemstash:9292
 
 RUN bundle install
 
-RUN rake ts:in
+RUN rake ts:in --trace
 # bundle install and then bundle exec unicorn_rails -c config/unicorn.conf
 
 # You could also run script/server but then you can't generate PDFs. 
