@@ -12,3 +12,7 @@ services:
       production
     - key: PORT
       value: 9312
+  - type: pserv
+    name: gemstash
+    env: docker
+    

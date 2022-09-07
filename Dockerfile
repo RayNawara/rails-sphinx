@@ -19,6 +19,16 @@ COPY /database.yml /mba-legacy/config/database.yml
 WORKDIR /mba-legacy
 RUN git submodule update --init --recursive
 
+FROM ruby:2.3.1-alpine
+
+ENTRYPOINT ["gemstash", "start", "--no-daemonize"]
+
+RUN apk update \
+  && apk add --no-cache build-base sqlite-dev
+RUN gem install gemstash
+
+COPY gemstash.config.yml /config.yml
+
 # https://github.com/iComputer7/ancient-ubuntu-docker
 FROM ubuntu:12.04
 
@@ -106,7 +116,7 @@ RUN bundle install
 
 RUN rake ts:in
 
-# RUN pwd && bundle config mirror.https://rubygems.org http://gemstash:9292
+RUN pwd && bundle config mirror.https://rubygems.org http://localhost:9292
 
 # bundle install and then bundle exec unicorn_rails -c config/unicorn.conf
 

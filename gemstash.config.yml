@@ -1,0 +1,7 @@
+# ~/.gemstash/config.yml
+---
+:base_path: <%= ENV["BASE_PATH"] || ~/.gemstash %>
+:db_adapter: <%= ENV["DB_ADAPTER"] || sqlite3 %>
+:db_url: <%= ENV["DB_URL"] %>
+:cache_type: <%= ENV["CACHE_TYPE"] || memory %>
+:memcached_servers: <%= ENV["MEMCACHED_SERVERS"] %>
