@@ -6,7 +6,7 @@ production:
   mem_limit: 256M
   port: 9312
   bin_path: /usr/local/bin
-  searchd_file_path: /var/www/mbadiamond/shared/sphinx/
-  config_file: /var/www/mbadiamond/shared/config/sphinx.conf
-  pid_file: /var/www/mbadiamond/shared/pids/sphinx.pid
-  address: 10.176.67.72
+  searchd_file_path: /shared/sphinx/
+  config_file: /shared/config/sphinx.conf
+  pid_file: /shared/pids/sphinx.pid
+  address: localhost
