@@ -67,6 +67,10 @@ This will drop you into your home directory
 
 `bundle install`
 
+`rake ts:in`
+
+The rake will set up all the indexes and also the sphinx.conf
+
 `searchd --config config/sphinx.conf`
 
 `bundle exec unicorn_rails -c config/unicorn.conf`
