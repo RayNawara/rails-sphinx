@@ -69,7 +69,7 @@ This will drop you into your home directory
 
 I had to run `rake ts:in` to build the index, then
 
-`searchd --config config/sphinx.conf`
+`searchd --config shared/config/sphinx.conf`
 
 `bundle exec unicorn_rails -c config/unicorn.conf`
 

@@ -119,4 +119,4 @@ RUN rake ts:in
 
 EXPOSE 9312
 
-CMD ["/bin/bash"]
+CMD ["searchd --config shared/config/sphinx.conf"]
