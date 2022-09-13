@@ -85,6 +85,7 @@ RUN RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/src/openssl-1.0.2u rbenv i
   && gem install bundler --no-rdoc --no-ri -v 1.17.3 \
   && gem install rake --no-rdoc --no-ri -v 0.9.2 \
   && gem install rails --no-rdoc --no-ri -v 2.3.10 \
+  && gem install thinking-sphinx --no-rdoc --no-ri -v 1.3.18 \
   && gem install slimgems --no-rdoc --no-ri \
   && rbenv rehash
 
