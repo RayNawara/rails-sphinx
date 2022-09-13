@@ -110,7 +110,7 @@ RUN bundle install
 
 RUN bundle cache
 
-# RUN rake ts:in
+RUN rake ts:in
 # bundle install and then bundle exec unicorn_rails -c config/unicorn.conf
 
 # You could also run script/server but then you can't generate PDFs. 
