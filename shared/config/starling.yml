@@ -4,9 +4,9 @@ production:
   min_infix_len: 3
   max_matches: 10000
   mem_limit: 256M
-  port: 9311
+  port: 9312
   bin_path: /usr/local/bin
   searchd_file_path: /shared/sphinx/
   config_file: /shared/config/sphinx.conf
   pid_file: /shared/pids/sphinx.pid
-  address: 172.17.0.2
+  address: localhost
