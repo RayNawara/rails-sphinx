@@ -28,6 +28,8 @@ RUN sed -i -e "s/archive.ubuntu.com/old-releases.ubuntu.com/g" /etc/apt/sources.
 RUN apt-get update -q && apt-get install -y curl build-essential libmysqlclient-dev nano
 
 COPY --from=intermediate /mba-legacy/ /mba-legacy/
+COPY /sphinx.yml  /mba-legacy/config/sphinx.
+COPY /starling.yml  /mba-legacy/config/starling.yml
 
 WORKDIR /home/app
 RUN curl -O http://sphinxsearch.com/files/archive/sphinx-0.9.9.tar.gz
@@ -102,7 +104,9 @@ RUN cd ~ && download=https://github.com/wkhtmltopdf/wkhtmltopdf/releases/downloa
 # set working directory to project src
 WORKDIR /mba-legacy
 
-RUN pwd && bundle config mirror.https://rubygems.org https://gemstash:9292
+RUN pwd && bundle config mirror.http://rubygems.org http://gemstash:9292
+
+RUN bundle cache
 
 RUN bundle install
 
