@@ -104,6 +104,8 @@ RUN cd ~ && download=https://github.com/wkhtmltopdf/wkhtmltopdf/releases/downloa
 # set working directory to project src
 WORKDIR /mba-legacy
 
+COPY sphinx.conf /shared/config/sphinx.conf 
+
 # RUN pwd && bundle config mirror.http://rubygems.org http://gemstash:9292
 
 RUN bundle install
