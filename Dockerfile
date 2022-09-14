@@ -106,17 +106,22 @@ WORKDIR /mba-legacy
 
 COPY sphinx.conf /shared/config/sphinx.conf 
 
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod 774 entrypoint.sh
+
 # RUN pwd && bundle config mirror.http://rubygems.org http://gemstash:9292
 
-RUN bundle install
+# RUN bundle install
 
-RUN bundle cache
+# RUN bundle cache
 
-RUN rake ts:in
+# RUN rake ts:in
 # bundle install and then bundle exec unicorn_rails -c config/unicorn.conf
 
 # You could also run script/server but then you can't generate PDFs. 
 
 EXPOSE 9312
 
-CMD ["searchd --config shared/config/sphinx.conf"]
+# CMD ["searchd --config shared/config/sphinx.conf"]
+ENTRYPOINT ["./entrypoint.sh"]
