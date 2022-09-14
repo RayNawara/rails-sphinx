@@ -106,7 +106,7 @@ WORKDIR /mba-legacy
 
 COPY sphinx.conf /shared/config/sphinx.conf 
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh entrypoint.sh
 
 RUN chmod 774 entrypoint.sh
 
